@@ -1,2 +1,3 @@
-DELETE FROM House
-WHERE ID = $1
+DELETE FROM Houses
+WHERE ID = $1;
+SELECT * FROM Houses

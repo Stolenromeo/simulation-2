@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-// import { connect } from 'react-redux';
-import axios from 'axios'
+import { connect } from 'react-redux';
+import { addHouse } from '../ducks/reducer'
 
 class Wizard extends Component {
 	constructor(){
@@ -21,10 +21,11 @@ class Wizard extends Component {
         this.setState(obj)
 	}
 	
-	add = () =>{
+	add = (props) =>{
 		let {name, address, city, state, zip } = this.state;
 		let obj = {name, address, city, state, zip}
-		axios.post(`/api/houses:`, obj)
+
+		this.props.addHouse(obj);
 		this.setState({
 			name: '',
 			address: '',
@@ -49,15 +50,15 @@ class Wizard extends Component {
 					<input type='text' onChange={e=>this.handleChange(e.target.value, 'city')}/>
 				</div>
 				<div>State
-					<input type='text' onChange={e=>this.handleChange(e.target.value, 'state')}/>
+					<input type='text' maxLength='2' onChange={e=>this.handleChange(e.target.value, 'state')}/>
 				</div>
 				<div>Zip
-					<input type='number' onChange={e=>this.handleChange(e.target.value, 'zip')}/>
+					<input type='number' maxLength='1' onChange={e=>this.handleChange(e.target.value, 'zip')}/>
 				</div>
-				<Link to='/'><button onClick={this.add}>Complete</button></Link>
+				<Link to='/' onClick={this.add}><button>Complete</button></Link>
 			</div>
 		)
 	}
 
 }
-export default Wizard
+export default connect(null, {addHouse})(Wizard)

@@ -14,7 +14,7 @@ massive(process.env.CONNECTION_STRING).then(db=>{
 
 app.get('/api/houses', hc.getHouses)
 app.post('/api/houses', hc.addHouse)
-app.delete('/api/houses:id', hc.deleteHouse)
+app.delete(`/api/houses/:id`, hc.deleteHouse)
 
 
 const {SERVER_PORT} = process.env

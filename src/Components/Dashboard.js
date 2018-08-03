@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
 import { connect } from 'react-redux'
-import { getHouses } from '../ducks/reducer'
+import { getHouses, deleteHouse } from '../ducks/reducer'
 
 import House from './House'
 
@@ -13,11 +13,13 @@ class Dashboard extends Component  {
 	render(props){
 		let houseList = this.props.houses.map(house=>{
 			return (<House
+				id={house.id}
 				name={house.name}
 				address={house.address}
 				city={house.city}
 				state={house.state}
 				zip={house.zip}
+				delete = {this.props.deleteHouse}
 				/>
 			)
 		})
@@ -36,4 +38,4 @@ function mapStateToProps(state){
 		houses:state.houses
 	}
 }
-export default connect(mapStateToProps, {getHouses})(Dashboard)
+export default connect(mapStateToProps, {getHouses, deleteHouse})(Dashboard)

@@ -6,13 +6,19 @@ let initialState = {
 	address: '',
 	city: '',
 	state: '',
-	zip: 0
+	zip: 0,
+	img: '',
+	mortgage: 0,
+	rent: 0
 }
 
 const FULFILLED = '_FULFILLED'
 const GET_HOUSES = 'GET_HOUSES'
 const ADD_HOUSE = 'ADD_HOUSE'
 const DELETE_HOUSE = 'DELETE_HOUSE'
+const UPDATE_IMG = 'UPDATE_IMG'
+const UPDATE_MORT = 'UPDATE_MORT'
+const UPDATE_RENT = 'UPDATE_RENT'
 // const CHANGE_NAME = 'CHANGE_NAME'
 // const CHANGE_ADDRESS = 'CHANGE_ADDRESS'
 // const CHANGE_CITY = 'CHANGE_CITY'
@@ -50,6 +56,29 @@ export function deleteHouse(id){
 	}
 }
 
+export function updateImg(e){
+	return {
+		type: UPDATE_IMG,
+		payload: e
+	}
+}
+
+export function updateMort(e){
+	let num = Number(e)
+	return{
+		type: UPDATE_MORT,
+		payload: num
+	}
+}
+
+export function updateRent(e){
+	let num = Number(e)
+	return {
+		type: UPDATE_RENT,
+		payload: num
+	}
+}
+
 // export function changeName(){
 // 	return {
 // 		type:CHANGE_NAME,
@@ -67,6 +96,15 @@ export default function reducer(state = initialState, action){
 
 		case DELETE_HOUSE + FULFILLED:
 		return ({...state, houses:action.payload})
+
+		case UPDATE_IMG:
+		return ({...state, img:action.payload})
+
+		case UPDATE_MORT:
+		return ({...state, mortgage:action.payload})
+
+		case UPDATE_RENT:
+		return ({...state, rent: action.payload})
 
 		default:
 			return state;

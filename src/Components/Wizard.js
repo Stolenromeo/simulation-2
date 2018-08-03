@@ -53,9 +53,10 @@ class Wizard extends Component {
 					<input type='text' maxLength='2' onChange={e=>this.handleChange(e.target.value, 'state')}/>
 				</div>
 				<div>Zip
-					<input type='number' maxLength='1' onChange={e=>this.handleChange(e.target.value, 'zip')}/>
+					<input type='number' onChange={e=>this.handleChange(e.target.value, 'zip')}/>
 				</div>
 				<Link to='/' onClick={this.add}><button>Complete</button></Link>
+				<Link to='/wizard/step2'><button>Next Step</button></Link>
 			</div>
 		)
 	}

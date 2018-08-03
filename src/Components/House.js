@@ -1,9 +1,19 @@
 import React from 'react'
 
-export default function House(){
+
+
+
+function House(props){
+	let {name, address, city, state, zip} = props
 	return (
 		<div>
-			House
+			<p>Property Name: {name}</p>
+			<p>Address: {address}</p>
+			<p>City: {city}</p>
+			<p>State: {state}</p>
+			<p>Zip: {zip}</p>
 		</div>
 	)
+
 }
+export default House

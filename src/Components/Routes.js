@@ -1,5 +1,5 @@
 import React from 'react';
-import {HashRouter as Router, Switch, Route} from 'react-router-dom';
+import {Switch, Route} from 'react-router-dom';
 
 import Dashboard from './Dashboard'
 import Wizard from './Wizard'

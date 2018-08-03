@@ -1,0 +1,2 @@
+DELETE FROM House
+WHERE ID = $1

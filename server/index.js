@@ -12,6 +12,10 @@ massive(process.env.CONNECTION_STRING).then(db=>{
     console.log('there was an error connecting to DB:', err)
 })
 
-const {SERVER_PORT} = process.env
+app.get('/api/houses', hc.getHouses)
+app.post('/api/houses', hc.addHouse)
+app.delete('/api/houses:id', hc.deleteHouse)
 
+
+const {SERVER_PORT} = process.env
 app.listen(SERVER_PORT, console.log('Sound of Silence not on port:', SERVER_PORT))

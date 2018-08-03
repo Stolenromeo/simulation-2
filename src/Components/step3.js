@@ -1,27 +1,35 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { updateMort, updateRent } from '../ducks/reducer'
+import { updateMort, updateRent, addHouse } from '../ducks/reducer'
 
 function Step3(props){
+	let {name, address, city, state, zip, img, mortgage, rent} =props;
+	let obj={name, address, city, state, zip, img, mortgage, rent}
 	return (
 		<div>
 			<div>Mortgage Rate<br/>
-				<input type='text' onChange={e=>{updateMort(e.target.value)}} value={props.mortgage}/>
+				<input type='text' onChange={e=>{props.updateMort(e.target.value)}} value={props.mortgage}/>
 			</div>
 			<div>Rent<br/>
-				<input type='text' onChange={e=>{updateRent(e.target.value)}} value={props.rent}/>
+				<input type='text' onChange={e=>{props.updateRent(e.target.value)}} value={props.rent}/>
 			</div>
 			<Link to='/wizard/step2'><button>Previous Step</button></Link>
-			<Link to='/'><button>Complete</button></Link>
+			<Link to='/' onClick={()=>props.addHouse(obj)}><button>Complete</button></Link>
 		</div>
 	)
 }
 function mapStateToProps(state){
 	return {
+		name: state.name,
+		address: state.address,
+		city: state.city,
+		state: state.state,
+		zip: state.zip,
+		img: state.img,
 		mortgage: state.mortgage,
 		rent: state.rent
 	}
 }
 
-export default connect(mapStateToProps, {updateMort, updateRent})(Step3)
+export default connect(mapStateToProps, {updateMort, updateRent, addHouse})(Step3)

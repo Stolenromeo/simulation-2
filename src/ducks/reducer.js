@@ -19,11 +19,11 @@ const DELETE_HOUSE = 'DELETE_HOUSE'
 const UPDATE_IMG = 'UPDATE_IMG'
 const UPDATE_MORT = 'UPDATE_MORT'
 const UPDATE_RENT = 'UPDATE_RENT'
-// const CHANGE_NAME = 'CHANGE_NAME'
-// const CHANGE_ADDRESS = 'CHANGE_ADDRESS'
-// const CHANGE_CITY = 'CHANGE_CITY'
-// const CHANGE_STATE = 'CHANGE_STATE'
-// const CHANGE_ZIP = 'CHANGE_ZIP'
+const UPDATE_NAME = 'UPDATE_NAME'
+const UPDATE_ADDRESS = 'UPDATE_ADDRESS'
+const UPDATE_CITY = 'UPDATE_CITY'
+const UPDATE_STATE = 'UPDATE_STATE'
+const UPDATE_ZIP = 'UPDATE_ZIP'
 
 export function getHouses(){
 	let houses = axios.get('/api/houses').then(res=>{
@@ -63,6 +63,41 @@ export function updateImg(e){
 	}
 }
 
+export function updateName(e){
+	return {
+		type: UPDATE_NAME,
+		payload: e
+	}
+}
+
+export function updateAddress(e){
+	return {
+		type: UPDATE_ADDRESS,
+		payload: e
+	}
+}
+
+export function updateCity(e){
+	return {
+		type: UPDATE_CITY,
+		payload: e
+	}
+}
+
+export function updateState(e){
+	return {
+		type: UPDATE_STATE,
+		payload: e
+	}
+}
+
+export function updateZip(e){
+	return {
+		type: UPDATE_ZIP,
+		payload: e
+	}
+}
+
 export function updateMort(e){
 	let num = Number(e)
 	return{
@@ -78,13 +113,6 @@ export function updateRent(e){
 		payload: num
 	}
 }
-
-// export function changeName(){
-// 	return {
-// 		type:CHANGE_NAME,
-// 		payload: name
-// 	}
-// }
 
 export default function reducer(state = initialState, action){
 	switch (action.type) {
@@ -105,6 +133,21 @@ export default function reducer(state = initialState, action){
 
 		case UPDATE_RENT:
 		return ({...state, rent: action.payload})
+		
+		case UPDATE_NAME:
+		return ({...state, name: action.payload})
+
+		case UPDATE_ADDRESS:
+		return ({...state, address: action.payload})
+
+		case UPDATE_CITY:
+		return ({...state, city: action.payload})
+
+		case UPDATE_STATE:
+		return ({...state, state: action.payload})
+
+		case UPDATE_ZIP:
+		return ({...state, zip: action.payload})
 
 		default:
 			return state;

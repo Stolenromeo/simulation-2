@@ -8,7 +8,7 @@ import { updateImg } from '../ducks/reducer'
 		return (
 		<div>
 			Image URL<br/>
-			<input type='text' onChange={e=>{updateImg(e.target.value)}} value={props.img}/>
+			<input type='text' onChange={e=>{props.updateImg(e.target.value)}} value={props.img}/>
 			<Link to='/wizard'><button>Previous Step</button></Link>
 			<Link to='/wizard/step3'><button>Next Step</button></Link>
 		</div>

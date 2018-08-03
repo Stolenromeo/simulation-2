@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { updateMort, updateRent, addHouse } from '../ducks/reducer'
+import { updateMort, updateRent, addHouse, updateImg, updateName, updateAddress, updateCity, updateState, updateZip   } from '../ducks/reducer'
 
 function Step3(props){
 	let {name, address, city, state, zip, img, mortgage, rent} =props;
@@ -15,7 +15,17 @@ function Step3(props){
 				<input type='text' onChange={e=>{props.updateRent(e.target.value)}} value={props.rent}/>
 			</div>
 			<Link to='/wizard/step2'><button>Previous Step</button></Link>
-			<Link to='/' onClick={()=>props.addHouse(obj)}><button>Complete</button></Link>
+			<Link to='/' onClick={()=>{props.addHouse(obj)
+			props.updateMort(0)
+			props.updateRent(0)
+			props.updateImg('')
+			props.updateName('')
+			props.updateAddress('')
+			props.updateCity('')
+			props.updateState('')
+			props.updateZip(0)
+
+			}}><button>Complete</button></Link>
 		</div>
 	)
 }
@@ -32,4 +42,4 @@ function mapStateToProps(state){
 	}
 }
 
-export default connect(mapStateToProps, {updateMort, updateRent, addHouse})(Step3)
+export default connect(mapStateToProps, {updateMort, updateRent, addHouse, updateImg, updateName, updateAddress, updateCity, updateState, updateZip })(Step3)
